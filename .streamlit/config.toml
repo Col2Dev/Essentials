@@ -1,0 +1,17 @@
+[theme]
+base="dark"
+primaryColor="#00ACC1"
+backgroundColor="#000000"
+secondaryBackgroundColor="#111111"
+textColor="#FFFFFF"
+font="monospace"
+borderColor="#00ACC1"
+baseFontSize=14
+headingFontSizes= [
+     "2.0rem",
+     "1.8rem",
+     "1.6rem",
+     "1.4rem",
+     "1.2rem",
+     "1rem"
+]
