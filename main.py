@@ -1,9 +1,14 @@
 import streamlit as st
+import json
 
-# Must be first Streamlit command
+# Get Bible Json
+with open("kjv.json", "r", encoding="utf-8") as f:
+    bible = json.load(f)
+
+#Pagw Configurationa
 st.set_page_config(
     page_title="Nebula",
-    page_icon="🌌",
+    page_icon=None,
     layout="wide"
 )
 
@@ -11,7 +16,7 @@ def main():
 
     # ---------------- Sidebar ----------------
     with st.sidebar:
-        st.title("🌌 Nebula")
+        st.title("Apostolic Word")
         st.divider()
 
         options = ["Repent", "Baptism", "Holy Ghost"]
@@ -22,20 +27,47 @@ def main():
             default="Repent"
         )
 
-    # ------------- Main Content -------------
-    with st.container():
+        st.divider()
 
-        col1, col2, col3 = st.columns([1, 2, 1])
+        books = list(bible.keys())
+        book = st.selectbox("Book:", books)
 
-        with col2:
+        st.divider()
 
-            # ---------------- REPENT PAGE ----------------
-            if selection == "Repent":
+        chapters = list(bible[book].keys())
+        chapter = st.selectbox("Chapter:", chapters)
 
-                st.markdown("""
-## Acts 2:38
+    
 
-**- "Repent** and be **baptized** every one of you in the *NAME*  of **Jesus Christ** for the remission of sins, and ye shall receive the  **gift of the Holy Ghost"**
+    # Layout
+    col1, col2, col3 = st.columns([1.5, 1.5)
+
+    
+    # Bible Column
+    with col1:
+        st.divider()
+        st.markdown("## Bible")
+        st.divider()
+
+        verses = bible[book][chapter]
+        
+        st.markdown(f"**{book} {chapter}**")
+        for verse_num, verse_text in verses.items():
+            
+            st.write(verse_num + " " + verse_text)
+            st.write("")
+
+    # Teaching Column 
+    with col2:
+
+        if selection == "Repent":
+            st.divider()
+            st.markdown("## Acts 2:38")
+            st.divider()
+            st.markdown("""
+**- "Repent** and be **baptized** every one of you in the NAME  
+of Jesus Christ for the remission of sins,  
+and ye shall receive the gift of the Holy Ghost"
 
 ---
 
@@ -43,42 +75,42 @@ def main():
 
 Repentance is the act of acknowledging sins, asking for forgiveness, and turning from them.
 
-It is a state of the soul that is granted by God, and you simply cannot repent by just saying sorry and then further continuing in sin.
+It is a state of the soul that is granted by God.
 
 It is a death of the old man.
 """)
+            st.divider()
 
-            # ---------------- BAPTISM PAGE ----------------
-            elif selection == "Baptism":
-
-                st.markdown("""
-## Baptism
-
-Baptism is a symbol of burial
+        elif selection == "Baptism":
+            st.divider()
+            st.markdown("## Baptism")
+            st.divider()
+            st.markdown("""
+Baptism is a symbol of burial.
 
 You bury the old man which washes away your past self, and makes you a new man.
-You start with a new slate and your sins are no longer on your record. This means God does not remember them anymore.
 
 It is a remission of sins.
 """)
+            st.divider()
 
-            # ---------------- HOLY GHOST PAGE ----------------
-            elif selection == "Holy Ghost":
+        elif selection == "Holy Ghost":
+            st.divider()
+            st.markdown("## Holy Ghost")
+            st.divider()
+            st.markdown("""
+The Gift of the Holy Ghost is the Lord's Spirit coming down from heaven and living inside you.
 
-                st.markdown("""
-## Gift of the Holy Ghost
+You will know He is living in you when you begin to speak in an unknown language according to Acts 2:4.
 
-The Gift of the Holy Ghost is the Lord's Spirit coming down from heaven and coming to live on the inside of you.
+The Lord's Spirit gives power over:
 
-The way you will know He is living in you is when you start to speak in an unknown language according to **Acts 2:4**.
-
-The Lord's spirit will manifest inside you and give you the power over:
-
-**Flesh  
-Devils  
-And Much More**
+• Flesh  
+• Devils  
+• And more
 """)
+            st.divider()
 
-
+# ---------------- RUN APP ----------------
 if __name__ == "__main__":
     main()
