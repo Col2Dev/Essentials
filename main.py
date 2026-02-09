@@ -7,7 +7,7 @@ with open("kjv.json", "r", encoding="utf-8") as f:
 
 #PAGE CONFIGURATION
 st.set_page_config(
-    page_title="Nebula",
+    page_title="Apostolic Word: Bible",
     page_icon=None,
     layout="wide"
 )
@@ -56,3 +56,4 @@ def main():
 #RUN APP
 if __name__ == "__main__":
     main()
+
