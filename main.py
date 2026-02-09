@@ -39,7 +39,7 @@ def main():
         chapter = st.selectbox("Chapter:", chapters)
 
     # ---------------- Layout ----------------
-    col1, col2, col3 = st.columns([1.5, 1.5])
+    col1, col2 = st.columns([1.5, 1.5])
 
     # Bible Column
     with col1:
@@ -111,3 +111,4 @@ The Lord's Spirit gives power over:
 #RUN APP
 if __name__ == "__main__":
     main()
+
