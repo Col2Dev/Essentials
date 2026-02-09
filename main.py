@@ -1,20 +1,21 @@
 import streamlit as st
 import json
 
-# Get Bible Json
+# LOAD JSON FILE
 with open("kjv.json", "r", encoding="utf-8") as f:
     bible = json.load(f)
 
-#Pagw Configurationa
+#PAGE CONFIGURATION
 st.set_page_config(
     page_title="Nebula",
     page_icon=None,
     layout="wide"
 )
 
+
 def main():
 
-    # ---------------- Sidebar ----------------
+    # Sidebar
     with st.sidebar:
         st.title("Apostolic Word")
         st.divider()
@@ -37,12 +38,9 @@ def main():
         chapters = list(bible[book].keys())
         chapter = st.selectbox("Chapter:", chapters)
 
-    
+    # ---------------- Layout ----------------
+    col1, col2, col3 = st.columns([1.5, 1.5])
 
-    # Layout
-    col1, col2, col3 = st.columns([1.5, 1.5)
-
-    
     # Bible Column
     with col1:
         st.divider()
@@ -57,9 +55,8 @@ def main():
             st.write(verse_num + " " + verse_text)
             st.write("")
 
-    # Teaching Column 
+    # Teaching Column
     with col2:
-
         if selection == "Repent":
             st.divider()
             st.markdown("## Acts 2:38")
@@ -111,6 +108,6 @@ The Lord's Spirit gives power over:
 """)
             st.divider()
 
-# ---------------- RUN APP ----------------
+#RUN APP
 if __name__ == "__main__":
     main()
